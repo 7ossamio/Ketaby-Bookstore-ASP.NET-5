@@ -1,0 +1,21 @@
+﻿@model PagedList.IPagedList<BookStore.WEB.ViewModels.BookViewModel>
+@using PagedList.Mvc;
+
+@foreach (var book in Model)
+{
+    <div class="card my-2 w-75">
+        <div class="card-header">
+            @book.Name
+        </div>
+        <div class="card-body">
+            <h6 class="card-text">Genre : @book.Category</h6>
+            <h6 class="card-title">Author : @book.Author</h6>
+            <p class="card-text">@book.Description</p>  
+
+            <h6 class="card-t">Price : @book.Price.ToString("# EGP")</h6>
+            @Ajax.ActionLink("Add to Shopping Cart", "Index", "Home", new {searchName = @ViewBag.searchName, id = book.Id,
+                page = Model.PageNumber,author = ViewBag.Author, category = ViewBag.Category},
+                new AjaxOptions {UpdateTargetId = "updateProducts", OnSuccess = "OnSuccess"}, new {@class = "btn btn-primary btn-sm"})
+        </div>
+    </div>
+}

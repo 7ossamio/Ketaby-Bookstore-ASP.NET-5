@@ -1,0 +1,15 @@
+﻿@model PagedList.IPagedList<BookStore.WEB.ViewModels.BookViewModel>
+@using PagedList.Mvc;
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "Products";
+}
+
+<div id="updateProducts">
+    @Html.Partial("BookSummary")
+</div>
+
+<div class="float-right">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, category = ViewBag.category }))
+</div>

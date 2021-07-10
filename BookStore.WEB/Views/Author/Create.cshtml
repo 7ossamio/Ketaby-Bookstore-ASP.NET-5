@@ -1,0 +1,17 @@
+﻿@model BookStore.WEB.ViewModels.AuthorViewModel
+@{
+    ViewBag.Title = "Add Author";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h4>Add Author</h4>
+@using (Html.BeginForm("Create","Author"))
+{
+    @Html.AntiForgeryToken()
+<div class="form-group">
+    <label>Full name</label>
+    @Html.EditorFor(m => m.Name, null, new { htmlAttributes = new { @class = "form-control col-sm-4", placeholder = "مثال: نجيب محفوظ" } })
+    @Html.ValidationMessageFor(m=>m.Name)
+</div>
+    <input type="submit" value="Confirm" class="btn btn-primary"/>
+}
+

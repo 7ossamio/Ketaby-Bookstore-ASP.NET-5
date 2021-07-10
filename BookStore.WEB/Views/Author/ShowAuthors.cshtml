@@ -1,0 +1,23 @@
+﻿@model IEnumerable<BookStore.WEB.ViewModels.AuthorViewModel>
+@Html.ActionLink("Add author", "Create", null, new { @class = "btn btn-primary mb-2" })
+<table class="table table-hover">
+    <tbody>
+    @foreach (var author in Model)
+    {
+        <tr>
+            <td>@author.Name</td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", "Author", new { id = author.Id },
+                    new {@class= "viewDialog", data_dialog_title = "Editing a model" })
+            </td>
+            <td>
+                @Ajax.ActionLink("Delete", "Delete", "Author",
+                    new { id =author.Id},new AjaxOptions { HttpMethod="POST",UpdateTargetId = "updateAdminPanel",Confirm = "Are you sure you want to delete this item?"
+                    })
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+<script src="@Url.Content("~/Scripts/developerScripts/EditDialogScript.js")"></script>
+

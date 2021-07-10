@@ -1,0 +1,23 @@
+﻿@model IEnumerable<BookStore.WEB.Models.CategoryViewModel>
+@Html.ActionLink("Add genre", "Create", null, new { @class = "btn btn-primary mb-2" })
+<table class="table table-hover">
+    <tbody>
+        @foreach (var category in Model)
+        {
+            <tr>
+                <td>@category.CategoryName</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", "Genre", new { id = category.Id },
+                        new {@class= "viewDialog", data_dialog_title = "Editing a genre" })
+                </td>
+                <td>
+                    @Ajax.ActionLink("Delete", "Delete", "Genre",
+                        new { id =category.Id},new AjaxOptions { HttpMethod="POST",UpdateTargetId = "updateAdminPanel",Confirm = "Are you sure you want to delete this item?"
+                        })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script src="@Url.Content("~/Scripts/developerScripts/EditDialogScript.js")"></script>
+

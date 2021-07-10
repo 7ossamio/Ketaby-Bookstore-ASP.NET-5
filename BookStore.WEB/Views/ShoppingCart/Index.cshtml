@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "Shopping Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Your cart</h2>
+
+<div id="updateCart">
+    @Html.Partial("ShowCart")
+</div>
+<a class="btn btn-primary btn-sm" href="@Model.returnUrl">Continue shopping</a>
+@Ajax.ActionLink("Empty Cart", "EmptyCart", "ShoppingCart", null, new AjaxOptions
+{
+    HttpMethod = "GET",
+    UpdateTargetId = "updateCart",
+    Confirm = "Do you want to completely empty your shopping cart?"
+}, new { @class = "btn btn-primary btn-sm" })
+@Html.ActionLink("Checkout", "MakeOrder", "Checkout", null, new { @class = "btn btn-primary btn-sm" })
